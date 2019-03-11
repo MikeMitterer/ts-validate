@@ -1,7 +1,7 @@
 {
-  "name": "@mmit/typescript-starter",
+  "name": "@mmit/validate",
   "author": "Mike Mitterer",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Object validation for/in TS",
   "license": "MIT",
   "type-check": "tsc",
