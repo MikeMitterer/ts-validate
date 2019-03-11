@@ -24,7 +24,9 @@
     "test:unit": "jest src/test/unit",
     "test:integration": "jest src/test/integration",
     "doc": "typedoc --out doc",
-    "clean": "rm -rf lib dist bin doc && jest --clearCache"
+    "clean": "rm -rf lib dist bin doc && jest --clearCache",
+    "prettier": "onchange './src/**/*.ts'  -- prettier --write {{changed}}"
+
   },
   "files": [
     "lib",

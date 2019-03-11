@@ -1,7 +1,7 @@
 /**
- * Wird beim Check in [[Verifier]] im Falle eines Fehlers geworfen
+ * Wird beim Check im Falle eines Fehlers geworfen
  */
-export default class InvalidEventError extends Error {
+export default class ArgumentError extends Error {
     constructor(message?: string) {
         // 'Error' breaks prototype chain here
         super(message);
@@ -19,6 +19,6 @@ export default class InvalidEventError extends Error {
             this.__proto__ = actualProto;
         }
 
-        // this.name = InvalidEventError.name; // stack traces display correctly now
+        // this.name = ArgumentError.name; // stack traces display correctly now
     }
 }
