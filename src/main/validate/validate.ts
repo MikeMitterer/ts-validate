@@ -102,3 +102,6 @@ export function notBlank(expression: string, message: Message = DEFAULT_NOT_BLAN
 
     return expression;
 }
+
+// https://stackoverflow.com/questions/15734320/typescript-how-to-check-if-an-array-index-exist/15734394
+// https://stackoverflow.com/questions/2672380/how-do-i-check-in-javascript-if-a-value-exists-at-a-certain-array-index/2672411

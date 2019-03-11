@@ -36,10 +36,17 @@ describe('validate.spec.ts', () => {
     test('not Empty', () => {
         expect(validate.notEmpty('abc')).toBe('abc');
         expect(validate.notEmpty([1, 2, 3])).toBeArray();
+        expect(validate.notEmpty({ name: "Mike"} )).toMatchObject({ name: "Mike"});
+
+        const obj = {name: "Mike"};
+        expect(validate.notEmpty(obj )).toMatchObject(obj);
 
         expect(() => validate.notEmpty('')).toThrow(ArgumentError);
         expect(() => validate.notEmpty([])).toThrow(ArgumentError);
         expect(() => validate.notEmpty({})).toThrow(ArgumentError);
+
+        expect(() => validate.notEmpty({}, () => "Object must not be empty!"))
+            .toThrow("Object must not be empty!");
     });
 
     test("not blank", () => {
