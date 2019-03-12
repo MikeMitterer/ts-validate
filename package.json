@@ -24,7 +24,7 @@
         "deploy:node:prod": "NODE_ENV=production webpack --config webpack.node.js --mode production",
         "deploy:web": "rm -rf dist && NODE_ENV=development webpack --config webpack.web.js --mode development",
         "deploy:web:prod": "rm -rf dist && NODE_ENV=production webpack --config webpack.web.js --mode production",
-        "pub": "yarn run build && yarn version --new-version patch && yarn publish --access public --non-interactive",
+        "pub": "yarn run test && yarn run build && yarn version --new-version patch && yarn publish --access public --non-interactive",
         "test": "jest",
         "test:unit": "jest src/test/unit",
         "test:integration": "jest src/test/integration",
