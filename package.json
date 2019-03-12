@@ -8,7 +8,7 @@
   "main": "./lib/index.js",
   "typings": "./lib/index.d.ts",
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server --config webpack.web.js --mode development",
+    "start": "NODE_ENV=development webpack-dev-server --config webpack.web.js --mode development --open",
     "build": "rm -rf lib && yarn run build:ts",
     "build:ts": "tsc --rootDir src/main --project tsconfig.lib.json --declaration --outDir lib",
     "build:ts:watch": "tsc --rootDir src/main --declaration --outDir lib --watch",

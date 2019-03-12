@@ -1,10 +1,19 @@
 import ArgumentError from '../exception/ArgumentError';
 import {
-    DEFAULT_IS_NULL_EX_MESSAGE,
-    DEFAULT_IS_TRUE_EX_MESSAGE, DEFAULT_NOT_BLANK_MESSAGE,
+    DEFAULT_INVALID_INDEX_MESSAGE,
+    DEFAULT_INVALID_PROPERTY_MESSAGE,
+    DEFAULT_IS_NULL_MESSAGE,
+    DEFAULT_IS_TRUE_MESSAGE,
+    DEFAULT_MATCHES_ALPHANUMERIC,
+    DEFAULT_MATCHES_EMAIL,
+    DEFAULT_MATCHES_HEX,
+    DEFAULT_MATCHES_PASSWORD,
+    DEFAULT_MATCHES_PATTERN,
+    DEFAULT_MATCHES_UUID,
+    DEFAULT_NOT_BLANK_MESSAGE,
     DEFAULT_NOT_EMPTY_MESSAGE,
 } from './messages';
-
+import pattern from './pattern';
 type Message = () => string;
 
 /**
@@ -20,10 +29,7 @@ type Message = () => string;
  *
  * @throws Throws [ArgumentError] if expression is [false]
  */
-export function isTrue(
-    expression: boolean,
-    message: Message = DEFAULT_IS_TRUE_EX_MESSAGE,
-): boolean {
+export function isTrue(expression: boolean, message: Message = DEFAULT_IS_TRUE_MESSAGE): boolean {
     if (!expression) {
         throw new ArgumentError(message());
     }
@@ -46,7 +52,7 @@ export function isTrue(
  *
  * @throws Throws [ArgumentError] if expression is null
  */
-export function notNull<T>(expression: T, message: Message = DEFAULT_IS_NULL_EX_MESSAGE): T {
+export function notNull<T>(expression: T, message: Message = DEFAULT_IS_NULL_MESSAGE): T {
     if (expression === null || expression === undefined) {
         throw new ArgumentError(message());
     }
@@ -103,5 +109,105 @@ export function notBlank(expression: string, message: Message = DEFAULT_NOT_BLAN
     return expression;
 }
 
-// https://stackoverflow.com/questions/15734320/typescript-how-to-check-if-an-array-index-exist/15734394
-// https://stackoverflow.com/questions/2672380/how-do-i-check-in-javascript-if-a-value-exists-at-a-certain-array-index/2672411
+/**
+ * Validates that the given [index] is available in the given [array]
+ * and its value is not null or undefined.
+ *
+ * @param index Array-Index
+ * @param array The Array to check against
+ * @param message The exception message if invalid
+ *
+ * @return If the index is valid it is returned
+ *
+ * @throws Throws [ArgumentError] if expression is invalid
+ */
+export function isIndexValid(
+    index: number,
+    array: unknown[],
+    message: Message = DEFAULT_INVALID_INDEX_MESSAGE(index, array),
+): number {
+    notNull(array);
+
+    if (index < 0 || index >= array.length || !array[index]) {
+        throw new ArgumentError(message());
+    }
+    return index;
+}
+
+/**
+ * Validates that the given [property] is available in the given [obj]
+ * and its value is not null or undefined.
+ *
+ * @param key Property in [obj]
+ * @param obj The object to check the property against
+ * @param message The exception message if invalid
+ *
+ * @return If the key is valid it is returned
+ *
+ * @throws Throws [ArgumentError] if expression is invalid
+ */
+export function isPropertyValid(
+    key: string,
+    obj: {},
+    message: Message = DEFAULT_INVALID_PROPERTY_MESSAGE(key, obj),
+): string {
+    notNull(obj);
+
+    // tslint:disable-next-line
+    if (!(key in obj) || !(obj as any)[key]) {
+        throw new ArgumentError(message());
+    }
+
+    return key;
+}
+
+/**
+ * Validate that the specified [input] matches the specified [regex] pattern;
+ * otherwise throwing an exception.
+ *
+ * @param input String to check against the given [regex]
+ * @param regexp The Pattern to check the string against
+ * @param message The exception message if invalid
+ *
+ * @return If the key is valid it is returned
+ *
+ * @throws Throws [ArgumentError] if expression is invalid
+ */
+export function matchesPattern(
+    input: string,
+    regexp: RegExp,
+    message: Message = DEFAULT_MATCHES_PATTERN(input, regexp),
+): boolean {
+    notNull(regexp);
+
+    if (!regexp.test(input)) {
+        throw new ArgumentError(message());
+    }
+    return true;
+}
+
+export function isEmail(email: string, message: Message = DEFAULT_MATCHES_EMAIL(email)): boolean {
+    return matchesPattern(email, pattern.EMAIL, message);
+}
+
+export function isPassword(
+    password: string,
+    message: Message = DEFAULT_MATCHES_PASSWORD(password),
+): boolean {
+    return matchesPattern(password, pattern.PW, message);
+}
+
+export function isAlphanumeric(
+    value: string,
+    message: Message = DEFAULT_MATCHES_ALPHANUMERIC(value),
+): boolean {
+    return matchesPattern(value, pattern.ALPHANUMERIC, message);
+}
+
+export function isHex(value: string, message: Message = DEFAULT_MATCHES_HEX(value)): boolean {
+    return matchesPattern(value, pattern.HEX, message);
+}
+
+export function isUuid(value: string, message: Message = DEFAULT_MATCHES_UUID(value)): boolean {
+    return matchesPattern(value, pattern.UUID, message);
+}
