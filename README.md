@@ -1,4 +1,4 @@
-# Validate - Tiny TS library to
+# Validate
 
 > Lightweight TS library for validating function arguments.
 
@@ -9,45 +9,49 @@
 
 ## Usage
 
+```typescript
+import * as validate from '@mmit/validate';
+validate.isHex('1234567890abcdef');
+
+// This throws an ArgumentError with "'1234567890abcdefg' is not a hex value"
+validate.isHex('1234567890abcdefg');
+
+// The same but with your custom error message
+validate.isHex('1234567890abcdefg', () => 'My custom message');
+```
+
+For more examples - pls check out my [Tests](https://github.com/MikeMitterer/ts-validate/tree/master/src/test/unit/validate)
+
 > [Home](https://github.com/MikeMitterer/ts-validate)
 
-## Deploy-Varianten aus packages.json
+## Bugs / Contribute
 
--   yarn clean
+You reach me via [GH - Issues](https://github.com/MikeMitterer/ts-validate/issues)
 
--   yarn deploy
-    Erstellt die nötigen Files in `lib`
+Help is always welcome!
 
--   yarn deploy:node
-    Erstellt im `bin`-Folder das File app.js dass mit `node bin app.js` aufgerufen werden kann
+## License
 
--   yarn deploy:web
-    Browser-Part wird in `dist` veröffentlicht. Kann mit `simplehttpserver dist/` getestet werden
+    MIT License
 
--   yarn test | jest
-    Führt die Unit-Tests aus
+    Copyright (c) 2019, Mike Mitterer <office@mikemitterer.at>
 
-## Upgrade aller packages
+    Mike Mitterer: http://www.MikeMitterer.at/
 
-    yarn-upgrade-latest
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
 
-## ToDo (Jenkins)
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
 
-# MD5 Check von src
-
-find ./src -not \( -path ./src/test -prune \) -type f -exec md5 {} \; | sort -k 2
-
-# Wie oben - nur mit sum
-
-find ./src -not \( -path ./src/test -prune \) -type f -exec md5 {} \; | sort -k 2 | md5 -r
-
-# cmp gibt 0 zurück wenn die Files gleich sind
-
-if ! cmp srcmd5 srcmd5.prev >/dev/null 2>&1
-then
-rm -f srcmd5.prev
-mv srcmd5 srcmd5.prev
-
-# restart service
-
-fi
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.

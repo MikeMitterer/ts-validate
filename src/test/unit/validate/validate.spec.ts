@@ -145,6 +145,10 @@ describe('validate.spec.ts', () => {
                 new ArgumentError(`'${value}' is not a hex value!`),
             );
         });
+
+        expect(() => validate.isHex('1234567890abcdefg', () => 'My custom message')).toThrow(
+            new ArgumentError('My custom message'),
+        );
     });
 
     test('isUuid', () => {
