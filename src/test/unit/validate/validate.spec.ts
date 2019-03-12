@@ -1,3 +1,4 @@
+/* tslint:disable */
 // import { loggerFactory } from '../../main/config/ConfigLog4j';
 import 'jest-extended';
 import ArgumentError from '../../../main/exception/ArgumentError';
