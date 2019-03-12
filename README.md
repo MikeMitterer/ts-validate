@@ -22,8 +22,6 @@ validate.isHex('1234567890abcdefg', () => 'My custom message');
 
 For more examples - pls check out my [Tests](https://github.com/MikeMitterer/ts-validate/tree/master/src/test/unit/validate)
 
-> [Home](https://github.com/MikeMitterer/ts-validate)
-
 ## Bugs / Contribute
 
 You reach me via [GH - Issues](https://github.com/MikeMitterer/ts-validate/issues)
