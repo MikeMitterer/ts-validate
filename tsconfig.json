@@ -11,6 +11,9 @@
         // Damit werden die images erkannt
         "src/browser/**/*.ts",
         "src/site/images/typings.d.ts",
-        "src/site/images"
+        "src/site/images",
+
+        // Einbinder der TEST-Files
+        "src/test/**/*.ts"
     ]
 }

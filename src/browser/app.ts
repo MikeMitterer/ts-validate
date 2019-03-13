@@ -1,5 +1,5 @@
-import { loggerFactory } from "../main/config/ConfigLog4j";
 import lambi from '../site/images/lambi.png';
+import { loggerFactory } from './config/ConfigLog4j';
 
 const query = (selector: string): HTMLElement => document.querySelector(selector) as HTMLElement;
 

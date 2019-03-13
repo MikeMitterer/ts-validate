@@ -52,11 +52,15 @@ export function isTrue(expression: boolean, message: Message = DEFAULT_IS_TRUE_M
  *
  * @throws Throws [ArgumentError] if expression is null
  */
-export function notNull<T>(expression: T, message: Message = DEFAULT_IS_NULL_MESSAGE): T {
+export function notNull<T>(
+    expression: T,
+    message: Message = DEFAULT_IS_NULL_MESSAGE,
+): NonNullable<T> {
     if (expression === null || expression === undefined) {
         throw new ArgumentError(message());
     }
-    return expression;
+
+    return expression as NonNullable<T>;
 }
 
 /**

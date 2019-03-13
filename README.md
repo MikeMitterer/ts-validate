@@ -11,6 +11,7 @@
 
 ```typescript
 import * as validate from '@mmit/validate';
+
 validate.isHex('1234567890abcdef');
 
 // This throws an ArgumentError with "'1234567890abcdefg' is not a hex value"
@@ -18,6 +19,20 @@ validate.isHex('1234567890abcdefg');
 
 // The same but with your custom error message
 validate.isHex('1234567890abcdefg', () => 'My custom message');
+
+type MyName = string | undefined;
+
+const sayMyName = (name: MyName): MyName => name;
+
+// This would lead to: "Type 'string | undefined' is not assignable 
+// to type 'string' 
+// const checkedName = (name: MyName): string => sayMyName(name);
+
+// Checked version strips out "undefined"
+const checkedName = (name: MyName): string => validate.notNull(sayMyName(name));
+
+expect(checkedName("Mike")).toBe("Mike");
+expect(() => checkedName(undefined)).toThrow(ArgumentError);
 ```
 
 For more examples - pls check out my [Tests](https://github.com/MikeMitterer/ts-validate/tree/master/src/test/unit/validate)

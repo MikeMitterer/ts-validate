@@ -1,9 +1,10 @@
-/* tslint:disable */
 // import { loggerFactory } from '../../main/config/ConfigLog4j';
 import 'jest-extended';
 import ArgumentError from '../../../main/exception/ArgumentError';
 import * as error from '../../../main/validate/messages';
 import * as validate from '../../../main/validate/validate';
+
+type MyName = string | undefined;
 
 describe('validate.spec.ts', () => {
     // const logger = loggerFactory.getLogger('test.validate.spec.ts');
@@ -27,11 +28,18 @@ describe('validate.spec.ts', () => {
     test('null check', () => {
         expect(validate.notNull('abc')).toBe('abc');
 
+        const sayMyName = (name: MyName): MyName => name;
+        const checkedName = (name: MyName): string => validate.notNull(sayMyName(name));
+
+        expect(checkedName('Mike')).toBe('Mike');
+
         // tslint:disable-next-line
         expect(() => validate.notNull(null)).toThrow(ArgumentError);
 
         // tslint:disable-next-line
         expect(() => validate.notNull(null)).toThrow(error.DEFAULT_IS_NULL_MESSAGE());
+
+        expect(() => checkedName(undefined)).toThrow(ArgumentError);
     });
 
     test('not Empty', () => {
