@@ -1,5 +1,4 @@
 # Validate
-
 > Lightweight TS library for validating function arguments.
 
 ## Installation
