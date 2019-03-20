@@ -59,6 +59,15 @@ describe('validate.spec.ts', () => {
         );
     });
 
+    test('Change return value from string | undefined to string', () => {
+        // Type string | undefined can not evaluated to string
+        // const result: string = returnsStringOrUndefined("Mike");
+
+        // notBlank removes undefined!
+        const result: string = validate.notBlank(returnsStringOrUndefined('Mike'));
+        expect(result).toBe('Mike');
+    });
+
     test('not blank', () => {
         expect(validate.notBlank('abc')).toBe('abc');
         expect(validate.notBlank('   1')).toBe('   1');
@@ -178,4 +187,8 @@ describe('validate.spec.ts', () => {
             );
         });
     });
+
+    const returnsStringOrUndefined: (input: string | undefined) => string | undefined = (
+        input: string | undefined,
+    ) => input;
 });

@@ -14,6 +14,7 @@ import {
     DEFAULT_NOT_EMPTY_MESSAGE,
 } from './messages';
 import pattern from './pattern';
+
 type Message = () => string;
 
 /**
@@ -99,18 +100,23 @@ export function notEmpty<T = object | string>(
  * @param expression The expression the should evaluate against not being blank
  * @param message The exception message if invalid
  *
- * @return evaluated expression
+ * @return evaluated expression - undefined gets remove
  *
  * @throws Throws [ArgumentError] if expression is invalid
  */
-export function notBlank(expression: string, message: Message = DEFAULT_NOT_BLANK_MESSAGE): string {
+export function notBlank(
+    expression: string | undefined,
+    message: Message = DEFAULT_NOT_BLANK_MESSAGE,
+): string {
     notNull(expression);
 
-    if (expression.trim().length === 0) {
+    // expression is already checked against null
+    if (typeof expression === 'string' && expression.trim().length === 0) {
         throw new ArgumentError(message());
     }
 
-    return expression;
+    // Cast away undefined
+    return expression as string;
 }
 
 /**
