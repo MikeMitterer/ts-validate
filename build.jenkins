@@ -1,19 +1,31 @@
 pipeline {
+   environment {
+        // 0 - unchanged, 1 - changed
+        SRC_CHANGED=true
+    }
+
     agent {
         label 'linux'
     }
+
     stages {
         stage('Preparation') {
             steps {
                 timeout(time: 15, unit: 'MINUTES') {
                     ansiColor('xterm') {
-                        sh 'yarn'
+                        sh 'yarn upgrade'
 
                         // Repos von Amazon holen
                         // sh 'docker/_ci/run.sh --pull'
 
                         // Docker für die Integration-Tests starten
                         // sh 'docker/_ci/run.sh --start'
+
+                        script {
+                            // 0 - unchanged, 1 - changed
+                            // Script-Logik wird mit ! umgekehrt
+                            SRC_CHANGED = ! sh(script: "srcchanged.sh --check", returnStatus: true)
+                        }
                     }
                 }
             }
@@ -36,6 +48,18 @@ pipeline {
                     }
                 }
 
+            }
+        }
+
+        stage('Publish') {
+            // 1 - changed, 0 - unchanged
+            // SRC_CHANGED wird aber zu true bzw. false
+            //   - check auf == 1 funkt nicht
+            when { expression { SRC_CHANGED }}
+            steps {
+                ansiColor('xterm') {
+                    sh 'yarn run pub && git push origin HEAD:master'
+                }
             }
         }
     }
