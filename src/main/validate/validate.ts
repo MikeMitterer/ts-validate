@@ -1,4 +1,4 @@
-import { ArgumentError } from '../exception';
+import { ArgumentError } from '..';
 import {
     DEFAULT_INVALID_INDEX_MESSAGE,
     DEFAULT_INVALID_PROPERTY_MESSAGE,

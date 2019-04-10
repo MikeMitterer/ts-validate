@@ -1,6 +1,6 @@
 // import { loggerFactory } from '../../main/config/ConfigLog4j';
 import 'jest-extended';
-import { ArgumentError } from '../../../main/exception';
+import { ArgumentError } from '../../../main';
 import * as error from '../../../main/validate/messages';
 import * as validate from '../../../main/validate/validate';
 

@@ -8,7 +8,6 @@ pipeline {
         booleanParam(defaultValue: false, description: 'Publishes the module to NPMJS', name: 'PUBLISH_TO_NMP')
     }
 
-
     agent {
         label 'linux'
     }
