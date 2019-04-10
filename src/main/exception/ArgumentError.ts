@@ -1,7 +1,7 @@
 /**
  * Wird beim Check im Falle eines Fehlers geworfen
  */
-export default class ArgumentError extends Error {
+export class ArgumentError extends Error {
     constructor(message?: string) {
         // 'Error' breaks prototype chain here
         super(message);
