@@ -62,7 +62,7 @@ button:focus {
     // per default auf none im HTML-File
     body.loaded & {
         opacity: 1;
-        transition: opacity 1.00s ease-in-out;
+        transition: opacity 0.10s ease-in-out;
     }
 
     //height: 100%;
@@ -140,11 +140,12 @@ button:focus {
         align-items: center; // ↓
 
         #app {
+            display: none;
             color: green;
             min-width: 90px;
-            display: inline-block;
 
             body.loading & {
+                display: inline-block;
                 color: initial;
             }
         }

@@ -65,7 +65,7 @@
         //"declarationDir" :               "dist",
 
         "baseUrl": "./src",
-        // "paths": {
+        "paths": {
             // Pfade müssen auch in WebPack entsprechend definiert sein!
             // Funktioniert nicht richtig!
             //  https://github.com/Microsoft/TypeScript/issues/10866
