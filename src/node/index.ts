@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as process from 'process';
-import { loggerFactory } from '../main/config/ConfigLog4j';
+import { loggerFactory } from './config/ConfigLog4j';
 
 // import sayMyName from './fs-part';
 
@@ -14,7 +14,7 @@ logger.info(pwd);
 class Name {
     constructor(public readonly firstname: string, public readonly lastname: string) {}
 
-    public get name() {
+    public get name(): string {
         return `${this.firstname} ${this.lastname}`;
     }
 }

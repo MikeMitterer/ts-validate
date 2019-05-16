@@ -4,14 +4,14 @@ import '../site/styles/main.scss';
 import { main } from './app';
 import { loggerFactory } from './config/ConfigLog4j';
 
-function everythingIsReady() {
+function everythingIsReady(): void {
     const logger = loggerFactory.getLogger('done');
 
     logger.info(`everythingIsReady!`);
     main();
 }
 
-function domIsReady() {
+function domIsReady(): void {
     const logger = loggerFactory.getLogger('done');
 
     logger.info(`domIsReady!`);

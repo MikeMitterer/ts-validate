@@ -1,5 +1,5 @@
 {
-    "extends": ["tslint:recommended", "tslint-override"],
+    "extends": ["tslint:recommended", "tslint-consistent-codestyle"],
 
     "rules": {
         // "no-console": false
@@ -8,7 +8,7 @@
         },
         "one-line": [true, "check-catch", "check-finally", "check-open-brace", "check-whitespace"],
         "quotemark": false,
-        "explicit-override": [true, "decorator"],
+        // "explicit-override": [true, "new-line-after-decorators-and-tags" ],
         "object-literal-sort-keys": false,
         "no-any": true,
 
@@ -19,6 +19,11 @@
         "no-null-keyword": true,
 
         "max-classes-per-file": false,
+
+        "variable-name": [
+            true, "ban-keywords", "check-format",
+            "allow-leading-underscore", "allow-pascal-case"
+        ],
 
         "member-ordering": [
             true,
@@ -35,6 +40,8 @@
                     "private-instance-method"
                 ]
             }
-        ]
+        ],
+
+        "typedef": [true, "call-signature", "arrow-call-signature", "property-declaration"]
     }
 }

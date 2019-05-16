@@ -190,5 +190,5 @@ describe('validate.spec.ts', () => {
 
     const returnsStringOrUndefined: (input: string | undefined) => string | undefined = (
         input: string | undefined,
-    ) => input;
+    ): string | undefined => input;
 });
