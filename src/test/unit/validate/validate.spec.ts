@@ -203,7 +203,9 @@ describe('validate.spec.ts', () => {
         const valid: ReadonlyArray<string | number> = [1, 80, 8080, '55', '1', 65535, '65535'];
 
         valid.forEach((value) => {
-            expect(validate.isPort(value)).toBeTrue();
+            const port = validate.isPort(value);
+            const parsed = typeof value === 'number' ? value : parseInt(value, 10);
+            expect(port).toBe(parsed);
         });
 
         const invalid: ReadonlyArray<string | number> = ['abc', 0, 9999999];

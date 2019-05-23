@@ -32,7 +32,7 @@ type Message = () => string;
  *
  * @throws Throws [ArgumentError] if expression is [false]
  */
-export function isTrue(expression: boolean, message: Message = DEFAULT_IS_TRUE_MESSAGE): boolean {
+export function isTrue(expression: boolean, message: Message = DEFAULT_IS_TRUE_MESSAGE): boolean | never {
     if (!expression) {
         throw new ArgumentError(message());
     }
@@ -55,7 +55,10 @@ export function isTrue(expression: boolean, message: Message = DEFAULT_IS_TRUE_M
  *
  * @throws Throws [ArgumentError] if expression is null
  */
-export function notNull<T>(expression: T, message: Message = DEFAULT_IS_NULL_MESSAGE): NonNullable<T> {
+export function notNull<T>(
+    expression: T,
+    message: Message = DEFAULT_IS_NULL_MESSAGE,
+): NonNullable<T> | never {
     if (expression === null || expression === undefined) {
         throw new ArgumentError(message());
     }
@@ -77,7 +80,7 @@ export function notNull<T>(expression: T, message: Message = DEFAULT_IS_NULL_MES
 export function notEmpty<T = object | string>(
     expression: T,
     message: Message = DEFAULT_NOT_EMPTY_MESSAGE,
-): T {
+): T | never {
     notNull(expression);
 
     // tslint:disable-next-line
@@ -106,7 +109,7 @@ export function notEmpty<T = object | string>(
 export function notBlank(
     expression: string | undefined,
     message: Message = DEFAULT_NOT_BLANK_MESSAGE,
-): string {
+): string | never {
     notNull(expression);
 
     // expression is already checked against null
@@ -134,7 +137,7 @@ export function isIndexValid(
     index: number,
     array: unknown[],
     message: Message = DEFAULT_INVALID_INDEX_MESSAGE(index, array),
-): number {
+): number | never {
     notNull(array);
 
     if (index < 0 || index >= array.length || !array[index]) {
@@ -159,7 +162,7 @@ export function isPropertyValid(
     key: string,
     obj: {},
     message: Message = DEFAULT_INVALID_PROPERTY_MESSAGE(key, obj),
-): string {
+): string | never {
     notNull(obj);
 
     // tslint:disable-next-line
@@ -186,7 +189,7 @@ export function matchesPattern(
     input: string,
     regexp: RegExp,
     message: Message = DEFAULT_MATCHES_PATTERN(input, regexp),
-): boolean {
+): boolean | never {
     notNull(regexp);
 
     if (!regexp.test(input)) {
@@ -195,13 +198,13 @@ export function matchesPattern(
     return true;
 }
 
-export function isEmail(email: string, message: Message = DEFAULT_MATCHES_EMAIL(email)): boolean {
+export function isEmail(email: string, message: Message = DEFAULT_MATCHES_EMAIL(email)): boolean | never {
     return matchesPattern(email, pattern.EMAIL, message);
 }
 
 /** Length of hostname must not exceed 255 characters */
 // prettier-ignore
-export function isHostname(hostname: string, message: Message = DEFAULT_MATCHES_HOSTNAME(hostname)): boolean {
+export function isHostname(hostname: string, message: Message = DEFAULT_MATCHES_HOSTNAME(hostname)): boolean | never {
     matchesPattern(hostname, pattern.HOSTNAME, message);
     if (hostname.length > 255) {
         throw new ArgumentError(message());
@@ -210,25 +213,25 @@ export function isHostname(hostname: string, message: Message = DEFAULT_MATCHES_
 }
 
 // prettier-ignore
-export function isPassword( password: string, message: Message = DEFAULT_MATCHES_PASSWORD(password)): boolean {
+export function isPassword( password: string, message: Message = DEFAULT_MATCHES_PASSWORD(password)): boolean | never {
     return matchesPattern(password, pattern.PW, message);
 }
 
 // prettier-ignore
-export function isAlphanumeric(value: string, message: Message = DEFAULT_MATCHES_ALPHANUMERIC(value)): boolean {
+export function isAlphanumeric(value: string, message: Message = DEFAULT_MATCHES_ALPHANUMERIC(value)): boolean | never {
     return matchesPattern(value, pattern.ALPHANUMERIC, message);
 }
 
-export function isHex(value: string, message: Message = DEFAULT_MATCHES_HEX(value)): boolean {
+export function isHex(value: string, message: Message = DEFAULT_MATCHES_HEX(value)): boolean | never {
     return matchesPattern(value, pattern.HEX, message);
 }
 
-export function isUuid(value: string, message: Message = DEFAULT_MATCHES_UUID(value)): boolean {
+export function isUuid(value: string, message: Message = DEFAULT_MATCHES_UUID(value)): boolean | never {
     return matchesPattern(value, pattern.UUID, message);
 }
 
 // prettier-ignore
-export function isPort( value: string | number, message: Message = DEFAULT_PORT_MESSAGE(value)): boolean {
+export function isPort( value: string | number, message: Message = DEFAULT_PORT_MESSAGE(value)): number | never {
     const portToNumber = (portToConvert: string | number): number | never => {
         if (typeof portToConvert === 'number') {
             return portToConvert;
@@ -244,5 +247,5 @@ export function isPort( value: string | number, message: Message = DEFAULT_PORT_
     if (port < 1 || port > 65535) {
         throw new ArgumentError(message());
     }
-    return true;
+    return port;
 }
