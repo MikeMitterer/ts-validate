@@ -159,9 +159,7 @@ describe('validate.spec.ts', () => {
         const invalid = ['1234567890abcdefg', ''];
 
         invalid.forEach((value) => {
-            expect(() => validate.isHex(value)).toThrow(
-                new ArgumentError(`'${value}' is not a hex value!`),
-            );
+            expect(() => validate.isHex(value)).toThrow(new ArgumentError(`'${value}' is not a hex value!`));
         });
 
         expect(() => validate.isHex('1234567890abcdefg', () => 'My custom message')).toThrow(
@@ -170,10 +168,7 @@ describe('validate.spec.ts', () => {
     });
 
     test('isUuid', () => {
-        const valid = [
-            'c94f92b7-4c94-4f1e-bf4c-a0fe5be13210',
-            '53b74c29-8b42-4646-97b2-8b9c95e3b697',
-        ];
+        const valid = ['c94f92b7-4c94-4f1e-bf4c-a0fe5be13210', '53b74c29-8b42-4646-97b2-8b9c95e3b697'];
 
         valid.forEach((value) => {
             expect(validate.isUuid(value)).toBeTrue();
@@ -184,6 +179,38 @@ describe('validate.spec.ts', () => {
         invalid.forEach((value) => {
             expect(() => validate.isUuid(value)).toThrow(
                 new ArgumentError(`'${value}' is not a UUID value!`),
+            );
+        });
+    });
+
+    test('isHostname', () => {
+        const valid = ['www.google.com', 'bf', 'bf-msn', 'bf-msn', 'www.GOOGLE.com'];
+
+        valid.forEach((value) => {
+            expect(validate.isHostname(value)).toBeTrue();
+        });
+
+        const invalid = ['bf-', '', 'www.goo gle.com'];
+
+        invalid.forEach((value) => {
+            expect(() => validate.isHostname(value)).toThrow(
+                new ArgumentError(`'${value}' is not a valid hostname!`),
+            );
+        });
+    });
+
+    test('isPortNumber', () => {
+        const valid: ReadonlyArray<string | number> = [1, 80, 8080, '55', '1', 65535, '65535'];
+
+        valid.forEach((value) => {
+            expect(validate.isPort(value)).toBeTrue();
+        });
+
+        const invalid: ReadonlyArray<string | number> = ['abc', 0, 9999999];
+
+        invalid.forEach((value) => {
+            expect(() => validate.isPort(value)).toThrow(
+                new ArgumentError(`'${value}' is not a valid port number!`),
             );
         });
     });

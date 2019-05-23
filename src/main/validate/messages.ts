@@ -1,14 +1,12 @@
 type ErrorMessage = () => string;
 
-export const DEFAULT_IS_TRUE_MESSAGE: ErrorMessage = (): string =>
-    'The validated expression is false';
+export const DEFAULT_IS_TRUE_MESSAGE: ErrorMessage = (): string => 'The validated expression is false';
 
 export const DEFAULT_IS_NULL_MESSAGE: ErrorMessage = (): string => 'The validated object is null';
 
 export const DEFAULT_NOT_EMPTY_MESSAGE: ErrorMessage = (): string => 'The validated value is empty';
 
-export const DEFAULT_NOT_BLANK_MESSAGE: ErrorMessage = (): string =>
-    'The validated string is blank';
+export const DEFAULT_NOT_BLANK_MESSAGE: ErrorMessage = (): string => 'The validated string is blank';
 
 // prettier-ignore
 export const DEFAULT_INVALID_INDEX_MESSAGE: (index: number, array: unknown[]) => ErrorMessage
@@ -28,6 +26,10 @@ export const DEFAULT_MATCHES_PATTERN: (input: string, pattern: RegExp) => ErrorM
 // prettier-ignore
 export const DEFAULT_MATCHES_EMAIL: (value: string) => ErrorMessage
     = (value): ErrorMessage => (): string => `'${value}' is not a valid email address!`;
+
+// prettier-ignore
+export const DEFAULT_MATCHES_HOSTNAME: (value: string) => ErrorMessage
+    = (value): ErrorMessage => (): string => `'${value}' is not a valid hostname!`;
 
 // prettier-ignore
 export const DEFAULT_MATCHES_PASSWORD: (pw: string) => ErrorMessage
@@ -53,6 +55,9 @@ export const DEFAULT_EXCLUSIVE_BETWEEN_MESSAGE: ErrorMessage = (): string =>
 
 export const DEFAULT_JSON_MESSAGE: ErrorMessage = (): string =>
     'The value is neither a num, String, bool, Null, List or Map';
+
+export const DEFAULT_PORT_MESSAGE = (port: string | number): ErrorMessage => (): string =>
+    `'${port}' is not a valid port number!`;
 
 // export const DEFAULT_KEY_IN_MAP_MESSAGE: ErrorMessage = (): string =>
 //     "The key '%key%' is not available for this structure: %structure%";

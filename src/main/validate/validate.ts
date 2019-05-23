@@ -7,11 +7,13 @@ import {
     DEFAULT_MATCHES_ALPHANUMERIC,
     DEFAULT_MATCHES_EMAIL,
     DEFAULT_MATCHES_HEX,
+    DEFAULT_MATCHES_HOSTNAME,
     DEFAULT_MATCHES_PASSWORD,
     DEFAULT_MATCHES_PATTERN,
     DEFAULT_MATCHES_UUID,
     DEFAULT_NOT_BLANK_MESSAGE,
     DEFAULT_NOT_EMPTY_MESSAGE,
+    DEFAULT_PORT_MESSAGE,
 } from './messages';
 import pattern from './pattern';
 
@@ -53,10 +55,7 @@ export function isTrue(expression: boolean, message: Message = DEFAULT_IS_TRUE_M
  *
  * @throws Throws [ArgumentError] if expression is null
  */
-export function notNull<T>(
-    expression: T,
-    message: Message = DEFAULT_IS_NULL_MESSAGE,
-): NonNullable<T> {
+export function notNull<T>(expression: T, message: Message = DEFAULT_IS_NULL_MESSAGE): NonNullable<T> {
     if (expression === null || expression === undefined) {
         throw new ArgumentError(message());
     }
@@ -200,17 +199,23 @@ export function isEmail(email: string, message: Message = DEFAULT_MATCHES_EMAIL(
     return matchesPattern(email, pattern.EMAIL, message);
 }
 
-export function isPassword(
-    password: string,
-    message: Message = DEFAULT_MATCHES_PASSWORD(password),
-): boolean {
+/** Length of hostname must not exceed 255 characters */
+// prettier-ignore
+export function isHostname(hostname: string, message: Message = DEFAULT_MATCHES_HOSTNAME(hostname)): boolean {
+    matchesPattern(hostname, pattern.HOSTNAME, message);
+    if (hostname.length > 255) {
+        throw new ArgumentError(message());
+    }
+    return true;
+}
+
+// prettier-ignore
+export function isPassword( password: string, message: Message = DEFAULT_MATCHES_PASSWORD(password)): boolean {
     return matchesPattern(password, pattern.PW, message);
 }
 
-export function isAlphanumeric(
-    value: string,
-    message: Message = DEFAULT_MATCHES_ALPHANUMERIC(value),
-): boolean {
+// prettier-ignore
+export function isAlphanumeric(value: string, message: Message = DEFAULT_MATCHES_ALPHANUMERIC(value)): boolean {
     return matchesPattern(value, pattern.ALPHANUMERIC, message);
 }
 
@@ -220,4 +225,24 @@ export function isHex(value: string, message: Message = DEFAULT_MATCHES_HEX(valu
 
 export function isUuid(value: string, message: Message = DEFAULT_MATCHES_UUID(value)): boolean {
     return matchesPattern(value, pattern.UUID, message);
+}
+
+// prettier-ignore
+export function isPort( value: string | number, message: Message = DEFAULT_PORT_MESSAGE(value)): boolean {
+    const portToNumber = (portToConvert: string | number): number | never => {
+        if (typeof portToConvert === 'number') {
+            return portToConvert;
+        }
+        const result = parseInt(portToConvert, 10);
+        if (isNaN(result)) {
+            throw new ArgumentError(message());
+        }
+        return result;
+    };
+
+    const port = portToNumber(value);
+    if (port < 1 || port > 65535) {
+        throw new ArgumentError(message());
+    }
+    return true;
 }
