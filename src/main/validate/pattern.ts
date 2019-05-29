@@ -20,6 +20,8 @@ const pattern = {
     HEX: new RegExp('^(0x[a-fA-F0-9]+)|([a-fA-F0-9])+$'),
 
     UUID: new RegExp('^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$'),
+
+    URL: new RegExp(/^\b((http|https):\/\/?)[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|\/?))$/),
 };
 
 export default pattern;

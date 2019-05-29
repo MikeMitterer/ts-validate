@@ -59,5 +59,8 @@ export const DEFAULT_JSON_MESSAGE: ErrorMessage = (): string =>
 export const DEFAULT_PORT_MESSAGE = (port: string | number): ErrorMessage => (): string =>
     `'${port}' is not a valid port number!`;
 
+export const DEFAULT_MATCHES_URL: (url: string) => ErrorMessage = (url): ErrorMessage => (): string =>
+    `'${url}' is not a valid URL!`;
+
 // export const DEFAULT_KEY_IN_MAP_MESSAGE: ErrorMessage = (): string =>
 //     "The key '%key%' is not available for this structure: %structure%";

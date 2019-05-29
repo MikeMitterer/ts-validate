@@ -10,6 +10,7 @@ import {
     DEFAULT_MATCHES_HOSTNAME,
     DEFAULT_MATCHES_PASSWORD,
     DEFAULT_MATCHES_PATTERN,
+    DEFAULT_MATCHES_URL,
     DEFAULT_MATCHES_UUID,
     DEFAULT_NOT_BLANK_MESSAGE,
     DEFAULT_NOT_EMPTY_MESSAGE,
@@ -228,6 +229,10 @@ export function isHex(value: string, message: Message = DEFAULT_MATCHES_HEX(valu
 
 export function isUuid(value: string, message: Message = DEFAULT_MATCHES_UUID(value)): boolean | never {
     return matchesPattern(value, pattern.UUID, message);
+}
+
+export function isUrl(url: string, message: Message = DEFAULT_MATCHES_URL(url)): boolean | never {
+    return matchesPattern(url, pattern.URL, message);
 }
 
 // prettier-ignore

@@ -217,6 +217,45 @@ describe('validate.spec.ts', () => {
         });
     });
 
+    test('URL', () => {
+        const valid = [
+            'https://www.example.com',
+            'http://www.example.com',
+            'http://blog.example.com',
+            'http://www.example.com/product',
+            'http://www.example.com/products?id=1&page=2',
+            'http://www.example.com#up',
+            'http://www.example.com#up?name=Mike',
+            'http://www.example.com#up/?name=Mike',
+            'http://www.example.com#up/?name=Mike&page=3',
+            'http://www.site.com:8008',
+            'https://www.site.com:8008',
+            'https://localhost',
+            'http://localhost:8080',
+            'http://255.255.255.255',
+        ];
+        const invalid = [
+            '',
+            'ftp://www.example.com',
+            '255.255.255.255',
+            'www.example.com',
+            'example.com',
+            'w1://www.site.com:8008',
+            'http://invalid.com/perl.cgi?key= | http://web-site.com/cgi-bin/perl.cgi?key1=value1&key2',
+            'ws://www.site.com:8008',
+            'wss://www.site.com:8008',
+        ];
+
+        valid.forEach((value) => {
+            const isValid = validate.isUrl(value);
+            expect(isValid).toBeTrue();
+        });
+
+        invalid.forEach((value) => {
+            expect(() => validate.isUrl(value)).toThrow(new ArgumentError(`'${value}' is not a valid URL!`));
+        });
+    });
+
     const returnsStringOrUndefined: (input: string | undefined) => string | undefined = (
         input: string | undefined,
     ): string | undefined => input;
