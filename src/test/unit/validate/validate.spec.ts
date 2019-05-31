@@ -230,6 +230,8 @@ describe('validate.spec.ts', () => {
             'http://www.example.com#up/?name=Mike&page=3',
             'http://www.site.com:8008',
             'https://www.site.com:8008',
+            'https://www.site.com:8008/test.html',
+            'https://www.site.com:8008/test.jpg',
             'https://localhost',
             'http://localhost:8080',
             'http://255.255.255.255',

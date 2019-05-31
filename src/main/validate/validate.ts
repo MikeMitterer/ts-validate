@@ -84,7 +84,9 @@ export function notEmpty<T = object | string>(
 ): T | never {
     notNull(expression);
 
-    // tslint:disable-next-line
+    // TS complains with: Property 'hasOwnProperty' does not exist on type 'T'....
+    // @ts-ignore
+    // tslint:disable-next-line:no-any
     if (expression.hasOwnProperty('length') && (expression as any).length === 0) {
         throw new ArgumentError(message());
     } else if (typeof expression === 'object' && Object.keys(expression).length === 0) {
