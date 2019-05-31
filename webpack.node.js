@@ -1,7 +1,7 @@
 const path = require('path');
 
 const nodeExternals = require('webpack-node-externals');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const devMode = (process.env.NODE_ENV !== 'production');
 
@@ -55,7 +55,7 @@ module.exports = {
   },
   plugins: [
     // clean folders
-        new CleanWebpackPlugin({}),
+        new CleanWebpackPlugin(),
   ],
   stats: {
         colors: true,

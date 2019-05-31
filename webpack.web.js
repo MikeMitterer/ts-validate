@@ -7,8 +7,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
 const date = moment().format('YYYY.MM.DD HH:mm');
@@ -159,7 +159,7 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
 
         // clean dist folder
-        new CleanWebpackPlugin({}),
+        new CleanWebpackPlugin(),
 
         // Weitere Infos: https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
         // load `moment/locale/en.js` and `moment/locale/de.js`
