@@ -1,7 +1,7 @@
 {
     "name": "@mmit/validate",
     "author": "Mike Mitterer",
-    "version": "0.2.18",
+    "version": "0.2.19",
     "description": "Object validation for/in TS",
     "keywords": [
         "check",
