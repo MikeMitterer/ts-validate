@@ -258,6 +258,23 @@ describe('validate.spec.ts', () => {
         });
     });
 
+    test('inclusiveBetween', () => {
+        const valid: readonly number[] = [5, 6, 99, 99.8, 99.9];
+        const invalid: readonly number[] = [1, 2, 3, 4.99, 100];
+
+        valid.forEach((value: number) => {
+            expect(validate.inclusiveBetween(value, 5, 99.9));
+        });
+
+        invalid.forEach((value: number) => {
+            expect(() => validate.inclusiveBetween(value, 5, 99.9)).toThrow(
+                new ArgumentError(`'${value}' is not in the specified inclusive range (${5}/${99.9})!`),
+            );
+        });
+
+        // expect( ).toBe( );
+    });
+
     const returnsStringOrUndefined: (input: string | undefined) => string | undefined = (
         input: string | undefined,
     ): string | undefined => input;

@@ -9,6 +9,10 @@ export const DEFAULT_NOT_EMPTY_MESSAGE: ErrorMessage = (): string => 'The valida
 export const DEFAULT_NOT_BLANK_MESSAGE: ErrorMessage = (): string => 'The validated string is blank';
 
 // prettier-ignore
+export const DEFAULT_INVALID_TYPE_MESSAGE: (value: unknown, type: string) => ErrorMessage
+    = (value, type): ErrorMessage => (): string => `Invalid type - '${value}' is not a ${type}!`;
+
+// prettier-ignore
 export const DEFAULT_INVALID_INDEX_MESSAGE: (index: number, array: unknown[]) => ErrorMessage
     = (index, array): ErrorMessage => (): string =>
         `The validated array index is invalid! You requested index #${index} but the array had #${
@@ -47,9 +51,6 @@ export const DEFAULT_MATCHES_HEX: (value: string) => ErrorMessage
 export const DEFAULT_MATCHES_UUID: (value: string) => ErrorMessage
     = (value): ErrorMessage => (): string => `'${value}' is not a UUID value!`;
 
-export const DEFAULT_INCLUSIVE_BETWEEN_MESSAGE: ErrorMessage = (): string =>
-    'The value is not in the specified inclusive range';
-
 export const DEFAULT_EXCLUSIVE_BETWEEN_MESSAGE: ErrorMessage = (): string =>
     'The value is not in the specified exclusive range';
 
@@ -62,5 +63,7 @@ export const DEFAULT_PORT_MESSAGE = (port: string | number): ErrorMessage => ():
 export const DEFAULT_MATCHES_URL: (url: string) => ErrorMessage = (url): ErrorMessage => (): string =>
     `'${url}' is not a valid URL!`;
 
-// export const DEFAULT_KEY_IN_MAP_MESSAGE: ErrorMessage = (): string =>
-//     "The key '%key%' is not available for this structure: %structure%";
+// prettier-ignore
+export const DEFAULT_INCLUSIVE_BETWEEN_MESSAGE: (value: number, start: number, end: number) => ErrorMessage
+    = (value, start, end): ErrorMessage => (): string =>
+        `'${value}' is not in the specified inclusive range (${start}/${end})!`;

@@ -1,7 +1,9 @@
 import { ArgumentError } from '../exception';
 import {
+    DEFAULT_INCLUSIVE_BETWEEN_MESSAGE,
     DEFAULT_INVALID_INDEX_MESSAGE,
     DEFAULT_INVALID_PROPERTY_MESSAGE,
+    DEFAULT_INVALID_TYPE_MESSAGE,
     DEFAULT_IS_NULL_MESSAGE,
     DEFAULT_IS_TRUE_MESSAGE,
     DEFAULT_MATCHES_ALPHANUMERIC,
@@ -255,4 +257,20 @@ export function isPort( value: string | number, message: Message = DEFAULT_PORT_
         throw new ArgumentError(message());
     }
     return port;
+}
+
+// prettier-ignore
+export function inclusiveBetween(value: number, start: number, end: number, message: Message
+    = DEFAULT_INCLUSIVE_BETWEEN_MESSAGE(value, start, end)): number | never {
+
+    // noinspection SuspiciousTypeOfGuard
+    if (typeof value !== 'number') {
+        throw new ArgumentError(DEFAULT_INVALID_TYPE_MESSAGE(value, 'number')());
+    }
+
+    if (value < start || value > end) {
+        throw new ArgumentError(message());
+    }
+
+    return value;
 }
