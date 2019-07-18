@@ -138,17 +138,17 @@ export function notBlank(
  *
  * @throws Throws [ArgumentError] if expression is invalid
  */
-export function isIndexValid(
+export function isIndexValid<T>(
     index: number,
-    array: unknown[],
+    array: T[],
     message: Message = DEFAULT_INVALID_INDEX_MESSAGE(index, array),
-): number | never {
+): T | never {
     notNull(array);
 
     if (index < 0 || index >= array.length || !array[index]) {
         throw new ArgumentError(message());
     }
-    return index;
+    return array[index];
 }
 
 /**
@@ -194,48 +194,48 @@ export function matchesPattern(
     input: string,
     regexp: RegExp,
     message: Message = DEFAULT_MATCHES_PATTERN(input, regexp),
-): boolean | never {
+): string | never {
     notNull(regexp);
 
     if (!regexp.test(input)) {
         throw new ArgumentError(message());
     }
-    return true;
+    return input;
 }
 
-export function isEmail(email: string, message: Message = DEFAULT_MATCHES_EMAIL(email)): boolean | never {
+export function isEmail(email: string, message: Message = DEFAULT_MATCHES_EMAIL(email)): string | never {
     return matchesPattern(email, pattern.EMAIL, message);
 }
 
 /** Length of hostname must not exceed 255 characters */
 // prettier-ignore
-export function isHostname(hostname: string, message: Message = DEFAULT_MATCHES_HOSTNAME(hostname)): boolean | never {
+export function isHostname(hostname: string, message: Message = DEFAULT_MATCHES_HOSTNAME(hostname)): string | never {
     matchesPattern(hostname, pattern.HOSTNAME, message);
     if (hostname.length > 255) {
         throw new ArgumentError(message());
     }
-    return true;
+    return hostname;
 }
 
 // prettier-ignore
-export function isPassword( password: string, message: Message = DEFAULT_MATCHES_PASSWORD(password)): boolean | never {
+export function isPassword( password: string, message: Message = DEFAULT_MATCHES_PASSWORD(password)): string | never {
     return matchesPattern(password, pattern.PW, message);
 }
 
 // prettier-ignore
-export function isAlphanumeric(value: string, message: Message = DEFAULT_MATCHES_ALPHANUMERIC(value)): boolean | never {
+export function isAlphanumeric(value: string, message: Message = DEFAULT_MATCHES_ALPHANUMERIC(value)): string | never {
     return matchesPattern(value, pattern.ALPHANUMERIC, message);
 }
 
-export function isHex(value: string, message: Message = DEFAULT_MATCHES_HEX(value)): boolean | never {
+export function isHex(value: string, message: Message = DEFAULT_MATCHES_HEX(value)): string | never {
     return matchesPattern(value, pattern.HEX, message);
 }
 
-export function isUuid(value: string, message: Message = DEFAULT_MATCHES_UUID(value)): boolean | never {
+export function isUuid(value: string, message: Message = DEFAULT_MATCHES_UUID(value)): string | never {
     return matchesPattern(value, pattern.UUID, message);
 }
 
-export function isUrl(url: string, message: Message = DEFAULT_MATCHES_URL(url)): boolean | never {
+export function isUrl(url: string, message: Message = DEFAULT_MATCHES_URL(url)): string | never {
     return matchesPattern(url, pattern.URL, message);
 }
 

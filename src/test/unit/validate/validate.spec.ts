@@ -77,7 +77,7 @@ describe('validate.spec.ts', () => {
     });
 
     test('isIndexValid', () => {
-        expect(validate.isIndexValid(1, [1, 2, 3])).toBe(1);
+        expect(validate.isIndexValid(1, [1, 2, 3])).toBe(2);
         expect(() => validate.isIndexValid(3, [1, 2, 3])).toThrow(ArgumentError);
 
         expect(() => validate.isIndexValid(3, [1, 2, 3])).toThrow(
@@ -95,8 +95,8 @@ describe('validate.spec.ts', () => {
     });
 
     test('matchesPattern', () => {
-        expect(validate.matchesPattern('Mike', /^M.*/)).toBeTrue();
-        expect(validate.matchesPattern('Mike', /^M.*e$/)).toBeTrue();
+        expect(validate.matchesPattern('Mike', /^M.*/)).toBe('Mike');
+        expect(validate.matchesPattern('Mike', /^M.*e$/)).toBe('Mike');
 
         expect(() => validate.matchesPattern('Mik', /^M.*e$/)).toThrow(
             new ArgumentError("The string 'Mik' does not match the given pattern: '^M.*e$'!"),
@@ -104,10 +104,10 @@ describe('validate.spec.ts', () => {
     });
 
     test('matches email', () => {
-        expect(validate.isEmail('office@mikemitterer.at')).toBeTrue();
-        expect(validate.isEmail('urbi@orbi.it')).toBeTrue();
-        expect(validate.isEmail('urbi@orbi.com')).toBeTrue();
-        expect(validate.isEmail('mike.mitterer@orbi.com')).toBeTrue();
+        expect(validate.isEmail('office@mikemitterer.at')).toBe('office@mikemitterer.at');
+        expect(validate.isEmail('urbi@orbi.it')).toBe('urbi@orbi.it');
+        expect(validate.isEmail('urbi@orbi.com')).toBe('urbi@orbi.com');
+        expect(validate.isEmail('mike.mitterer@orbi.com')).toBe('mike.mitterer@orbi.com');
 
         expect(() => validate.isEmail('mike.mitterer@orbi')).toThrow(
             new ArgumentError("'mike.mitterer@orbi' is not a valid email address!"),
@@ -115,8 +115,8 @@ describe('validate.spec.ts', () => {
     });
 
     test('matches password', () => {
-        expect(validate.isPassword('1abcdefGH#')).toBeTrue();
-        expect(validate.isPassword('1abcdefGH?')).toBeTrue();
+        expect(validate.isPassword('1abcdefGH#')).toBe('1abcdefGH#');
+        expect(validate.isPassword('1abcdefGH?')).toBe('1abcdefGH?');
 
         const invalid = [
             'urbi@orbi.it',
@@ -137,7 +137,7 @@ describe('validate.spec.ts', () => {
         const valid = ['123abcdö', '123'];
 
         valid.forEach((value) => {
-            expect(validate.isAlphanumeric(value)).toBeTrue();
+            expect(validate.isAlphanumeric(value)).toBe(value);
         });
 
         const invalid = ['123a#cdö', ''];
@@ -153,7 +153,7 @@ describe('validate.spec.ts', () => {
         const valid = ['1234567890abcdef', '0x1234567890abcdef'];
 
         valid.forEach((value) => {
-            expect(validate.isHex(value)).toBeTrue();
+            expect(validate.isHex(value)).toBe(value);
         });
 
         const invalid = ['1234567890abcdefg', ''];
@@ -171,7 +171,7 @@ describe('validate.spec.ts', () => {
         const valid = ['c94f92b7-4c94-4f1e-bf4c-a0fe5be13210', '53b74c29-8b42-4646-97b2-8b9c95e3b697'];
 
         valid.forEach((value) => {
-            expect(validate.isUuid(value)).toBeTrue();
+            expect(validate.isUuid(value)).toBe(value);
         });
 
         const invalid = ['1234', ''];
@@ -187,7 +187,7 @@ describe('validate.spec.ts', () => {
         const valid = ['www.google.com', 'bf', 'bf-msn', 'bf-msn', 'www.GOOGLE.com'];
 
         valid.forEach((value) => {
-            expect(validate.isHostname(value)).toBeTrue();
+            expect(validate.isHostname(value)).toBe(value);
         });
 
         const invalid = ['bf-', '', 'www.goo gle.com'];
@@ -249,8 +249,8 @@ describe('validate.spec.ts', () => {
         ];
 
         valid.forEach((value) => {
-            const isValid = validate.isUrl(value);
-            expect(isValid).toBeTrue();
+            const url = validate.isUrl(value);
+            expect(url).toBe(value);
         });
 
         invalid.forEach((value) => {

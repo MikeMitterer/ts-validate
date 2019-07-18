@@ -6,6 +6,20 @@
     npm i @mmit/validate
     yarn add @mmit/validate
 
+# API changed v 0.3.0
+The return value of the following functions changed from **boolean** to **string**:
+
+      isPassword
+      isAlphanumeric
+      isHex
+      isUuid
+      isUrl
+      isEmail
+      isHostname
+      matchesPattern
+
+`isIndexValid` returns now the validated **array value** instead of the array index      
+
 ## Usage
 
 ```typescript
@@ -23,8 +37,8 @@ type MyName = string | undefined;
 
 const sayMyName = (name: MyName): MyName => name;
 
-// This would lead to: "Type 'string | undefined' is not assignable 
-// to type 'string' 
+// This would lead to: "Type 'string | undefined' is not assignable
+// to type 'string'
 // const checkedName = (name: MyName): string => sayMyName(name);
 
 // Checked version strips out "undefined"
