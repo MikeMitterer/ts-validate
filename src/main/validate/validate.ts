@@ -20,7 +20,7 @@ import {
 } from './messages';
 import pattern from './pattern';
 
-type Message = () => string;
+export type Message = () => string;
 
 /**
  * Validate that the argument condition is [true] otherwise
