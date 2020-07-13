@@ -10,6 +10,7 @@ import {
     DEFAULT_MATCHES_EMAIL,
     DEFAULT_MATCHES_HEX,
     DEFAULT_MATCHES_HOSTNAME,
+    DEFAULT_MATCHES_JWT,
     DEFAULT_MATCHES_PASSWORD,
     DEFAULT_MATCHES_PATTERN,
     DEFAULT_MATCHES_URL,
@@ -273,4 +274,9 @@ export function inclusiveBetween(value: number, start: number, end: number, mess
     }
 
     return value;
+}
+
+// prettier-ignore
+export function isWebToken(token: string, message: Message = DEFAULT_MATCHES_JWT(token)): string | never {
+    return matchesPattern(token, pattern.JWT, message);
 }

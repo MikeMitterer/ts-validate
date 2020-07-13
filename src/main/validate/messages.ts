@@ -67,3 +67,6 @@ export const DEFAULT_MATCHES_URL: (url: string) => ErrorMessage = (url): ErrorMe
 export const DEFAULT_INCLUSIVE_BETWEEN_MESSAGE: (value: number, start: number, end: number) => ErrorMessage
     = (value, start, end): ErrorMessage => (): string =>
         `'${value}' is not in the specified inclusive range (${start}/${end})!`;
+
+export const DEFAULT_MATCHES_JWT: (token: string) => ErrorMessage = (token): ErrorMessage => (): string =>
+    `'${token}' is not a valid WebToken!`;

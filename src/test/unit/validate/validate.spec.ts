@@ -1,3 +1,4 @@
+/* tslint:disable:max-line-length */
 // import { loggerFactory } from '../../main/config/ConfigLog4j';
 import 'jest-extended';
 import { ArgumentError } from '../../../main';
@@ -273,6 +274,27 @@ describe('validate.spec.ts', () => {
         });
 
         // expect( ).toBe( );
+    });
+
+    test('JavaWebToken', () => {
+        const valid = [
+            'eyJhbGciOiJSUzI1NiIsImtpZCI6IjUyMzYyOGE3YjkzOGYxZTA3MTdkOTZhZTFiZDY1NzllODBlYmQ5NjEifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcHJvamVjdC04MDY5ODY4NTE4MTA2MTg0ODYwIiwiYXVkIjoicHJvamVjdC04MDY5ODY4NTE4MTA2MTg0ODYwIiwiYXV0aF90aW1lIjoxNDY0MDAzODQxLCJ1c2VyX2lkIjoiZ3o3NDZHMnJIMWhpbUVKdHhibjkwWGJmWjc4MiIsInN1YiI6Imd6NzQ2RzJySDFoaW1FSnR4Ym45MFhiZlo3ODIiLCJpYXQiOjE0NjQwMDM4NDEsImV4cCI6MTQ2NDAwNzQ0MSwiZW1haWwiOiJvZmZpY2VAbWlrZW1pdHRlcmVyLmF0IiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbIm9mZmljZUBtaWtlbWl0dGVyZXIuYXQiXX19fQ.FI2Q74Kf-1bJVI37X-8fJ7BrHdGompy4n24GxNq_A3ZTs8xgyNQEzynAxJrVyz94BzvgWp1Hc-9LRXXmEJVFr7kIcQIrSTJgQUbKZI687HlKuXI6-mN26wUziICIA0GqJIJcxRwcU6C_tesoQZxIo05cY29lvJmkVq7FPkTNcps_nDMHObsj-8NTT2e1H7d5gx-Zhl8XU9uM_FDB-aA98lmbreS-PgBdFv9IyCTXOh6hfeOTPO5w3Lht9z1WOAmiGHCHcmfk0qGTDGDzjisRhlofDetCaAtyvH1qoyju0CIjp9VWiiLlV-oZ0at9fJiStLjs6oGbJtCf-r34HeKxRA',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzY290Y2guaW8iLCJleHAiOjEzMDA4MTkzODAsIm5hbWUiOiJDaHJpcyBTZXZpbGxlamEiLCJhZG1pbiI6dHJ1ZX0.03f329983b86f7d9a9f5fef85305880101d5e302afafa20154d094b229f75773',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+        ];
+        const invalid = [
+            '',
+            'e.yJhbGciOiJSUzI1NiIsImtpZCI6IjUyMzYyOGE3YjkzOGYxZTA3MTdkOTZhZTFiZDY1NzllODBlYmQ5NjEifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcHJvamVjdC04MDY5ODY4NTE4MTA2MTg0ODYwIiwiYXVkIjoicHJvamVjdC04MDY5ODY4NTE4MTA2MTg0ODYwIiwiYXV0aF90aW1lIjoxNDY0MDAzODQxLCJ1c2VyX2lkIjoiZ3o3NDZHMnJIMWhpbUVKdHhibjkwWGJmWjc4MiIsInN1YiI6Imd6NzQ2RzJySDFoaW1FSnR4Ym45MFhiZlo3ODIiLCJpYXQiOjE0NjQwMDM4NDEsImV4cCI6MTQ2NDAwNzQ0MSwiZW1haWwiOiJvZmZpY2VAbWlrZW1pdHRlcmVyLmF0IiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbIm9mZmljZUBtaWtlbWl0dGVyZXIuYXQiXX19fQ.FI2Q74Kf-1bJVI37X-8fJ7BrHdGompy4n24GxNq_A3ZTs8xgyNQEzynAxJrVyz94BzvgWp1Hc-9LRXXmEJVFr7kIcQIrSTJgQUbKZI687HlKuXI6-mN26wUziICIA0GqJIJcxRwcU6C_tesoQZxIo05cY29lvJmkVq7FPkTNcps_nDMHObsj-8NTT2e1H7d5gx-Zhl8XU9uM_FDB-aA98lmbreS-PgBdFv9IyCTXOh6hfeOTPO5w3Lht9z1WOAmiGHCHcmfk0qGTDGDzjisRhlofDetCaAtyvH1qoyju0CIjp9VWiiLlV-oZ0at9fJiStLjs6oGbJtCf-r34HeKxRA',
+        ];
+
+        valid.forEach((value) => {
+            const url = validate.isWebToken(value);
+            expect(url).toBe(value);
+        });
+
+        invalid.forEach((value) => {
+            expect(() => validate.isWebToken(value)).toThrow(new ArgumentError(`'${value}' is not a valid WebToken!`));
+        });
     });
 
     const returnsStringOrUndefined: (input: string | undefined) => string | undefined = (
