@@ -75,7 +75,7 @@
             // "@images/*":                   [ "site/images/*"]
         // },
 
-        "lib": ["esnext"/*, "dom"*/],
+        "lib": ["esnext", "dom"],
         // "lib": [ "dom"],
         // "types": ["node"],
 

@@ -1,6 +1,7 @@
 import { LoggerFactory } from '@mmit/logging';
 import * as fs from 'fs';
 import * as process from 'process';
+import * as validate from '../main/';
 
 // import sayMyName from './fs-part';
 
@@ -21,3 +22,11 @@ class Name {
 
 const name = new Name('Mike', 'Mitterer');
 logger.info(name.name);
+
+logger.info(validate.isUrl("http://www.mikemitterer.at"));
+logger.info(validate.isUrl("http://www.mikemitterer.at:8080"));
+try {
+    logger.info(validate.isUrl("http://www.mikemitterer.at:8080:1"));
+} catch (e) {
+    logger.error("http://www.mikemitterer.at:8080:1 is INVALID!");
+}
