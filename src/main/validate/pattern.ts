@@ -21,6 +21,7 @@ const pattern = {
 
     UUID: new RegExp('^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$'),
 
+    // Test: https://regex101.com/r/w7Z6PV/7/
     URL: new RegExp(/^\b((http|https):\/\/?)[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|\/?))$/),
 
     JWT: new RegExp(/^[a-zA-Z0-9\-_=]+?\.[a-zA-Z0-9\-_=]+?\.([a-zA-Z0-9\-_=]+)?$/),

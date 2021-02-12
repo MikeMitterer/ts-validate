@@ -236,6 +236,7 @@ describe('validate.spec.ts', () => {
             'https://localhost',
             'http://localhost:8080',
             'http://255.255.255.255',
+            'http://192.168.0.42:8060/:1',
         ];
         const invalid = [
             '',
@@ -247,6 +248,7 @@ describe('validate.spec.ts', () => {
             'http://invalid.com/perl.cgi?key= | http://web-site.com/cgi-bin/perl.cgi?key1=value1&key2',
             'ws://www.site.com:8008',
             'wss://www.site.com:8008',
+            'http://192.168.0.42:8060:1',
         ];
 
         valid.forEach((value) => {

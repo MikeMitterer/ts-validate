@@ -32,7 +32,7 @@
         "test:unit": "jest --colors src/test/unit",
         "test:integration": "jest --colors src/test/integration",
         "doc": "typedoc --out doc",
-        "clean": "rm -rf lib dist bin doc && jest --clearCache",
+        "clean": "rm -rf lib dist bin && jest --clearCache",
         "prettier": "onchange './src/**/*.ts'  -- prettier --write {{changed}}"
     },
     "files": [

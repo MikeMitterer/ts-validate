@@ -237,7 +237,18 @@ export function isUuid(value: string, message: Message = DEFAULT_MATCHES_UUID(va
 }
 
 export function isUrl(url: string, message: Message = DEFAULT_MATCHES_URL(url)): string | never {
-    return matchesPattern(url, pattern.URL, message);
+    try {
+        const valid = matchesPattern(url, pattern.URL, message);
+
+        // Recognizes e.g. http://192.168.0.42:8060:1
+        
+        // tslint:disable-next-line:no-unused-expression
+        new URL(url);
+
+        return valid;
+    } catch (e) {
+        throw new ArgumentError(message());
+    }
 }
 
 // prettier-ignore
