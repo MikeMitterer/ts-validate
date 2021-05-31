@@ -237,6 +237,7 @@ describe('validate.spec.ts', () => {
             'http://localhost:8080',
             'http://255.255.255.255',
             'http://192.168.0.42:8060/:1',
+            'https://host.mobiad.io:443',
         ];
         const invalid = [
             '',
