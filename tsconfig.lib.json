@@ -11,14 +11,17 @@
 {
     "compileOnSave": true,
     "compilerOptions": {
+        "incremental": true,
+        "tsBuildInfoFile": "./.ts.cache/tsconfig.tsbuildinfo",
+
         "strict": true,
 
         "target": "esnext",
 
-        "outDir": "./lib",
         "rootDir": "./src",
+        "outDir": "./lib",
 
-        "module": "commonjs",
+        "module": "esnext",
         "moduleResolution": "node",
 
         "sourceMap": true,
@@ -37,7 +40,7 @@
         "removeComments": false,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-
+                                      
         // Muss auf true sein da sonst z.B. keine Images
         // oder JS-Libs ohne expliziten export importiert werden können
         // "allowSyntheticDefaultImports": true,

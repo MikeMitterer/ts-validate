@@ -25,7 +25,9 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <%if(devmode){%><script src="http://localhost:35729/livereload.js"></script><%}%>
+    <% if(devmode){ %>
+        <script src="http://localhost:35729/livereload.js"></script>
+    <% } %>
 
     <style>
         .modal { opacity: 0; }
@@ -34,7 +36,7 @@
 <body class="loading">
 <div class="modal">
     <div class="modal__header">
-        ${require('./_partials/nav.html')}
+        <% include _partials/nav.html %>
         <div class="demo_images">
             <img class="cat" src="images/static/cat.jpg">
             <img id="frontImg"/>
@@ -50,10 +52,8 @@
         
         <div class="example">Test für PREFIXER!</div>
 
-        <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-            sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-            sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-        <hr>
+        <% include _partials/lorem.html %>
+        <% include _partials/lorem.html %>
 
     </div>
     <div class="modal__footer">

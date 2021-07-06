@@ -17,7 +17,7 @@ pipeline {
             steps {
                 timeout(time: 15, unit: 'MINUTES') {
                     ansiColor('xterm') {
-                        sh 'yarn'
+                        sh 'yarn && yarn clean'
 
                         // Repos von Amazon holen
                         // sh 'docker/_ci/run.sh --pull'

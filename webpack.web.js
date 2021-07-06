@@ -1,17 +1,17 @@
 const webpack = require('webpack');
 const path = require('path');
-const moment = require('moment');
+const datefns = require('date-fns')
 const package = require('./package');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
+const BeautifyHtmlWebpackPlugin = require('beautify-html-webpack-plugin')
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
-const date = moment().format('YYYY.MM.DD HH:mm');
+const date = datefns.format(Date.now(), 'yyyy.MM.dd HH:mm')
 
 // This helper function is not strictly necessary.
 // I just don't like repeating the path.join a dozen times.
@@ -41,12 +41,29 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'js/[name].js',
         pathinfo: true,
+        environment: {
+            // The environment supports arrow functions ('() => { ... }').
+            arrowFunction: true,
+            // The environment supports BigInt as literal (123n).
+            bigIntLiteral: false,
+            // The environment supports const and let for variable declarations.
+            const: true,
+            // The environment supports destructuring ('{ a, b } = obj').
+            destructuring: true,
+            // The environment supports an async import() function to import EcmaScript modules.
+            dynamicImport: false,
+            // The environment supports 'for of' iteration ('for (const x of array) { ... }').
+            forOf: true,
+            // The environment supports ECMAScript Module syntax to import ECMAScript modules (import ... from '...').
+            module: true,
+        }
     },
 
     // Mehr: https://webpack.js.org/configuration/devtool/#devtool
     // devtool: devMode ? 'inline-source-map' : false,
-    devtool: devMode ? 'cheap-eval-source-map' : false,
-    // devtool: devMode ? 'eval' : false,
+    
+    // cheap-module-eval-source-map is the best option
+    devtool: devMode ? 'inline-source-map' : false,
 
     resolve: {
         extensions: ['.tsx', '.ts', '.js', '.scss'],
@@ -71,10 +88,41 @@ module.exports = {
             // },
 
             // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-            { test: /\.tsx?$/, loader: 'awesome-typescript-loader' },
+            // Speed: ~3000ms (https://github.com/s-panferov/awesome-typescript-loader#loader-options)
+            // { test: /\.tsx?$/, loader: 'awesome-typescript-loader',
+            //     options: {
+            //         configFileName: path.resolve(__dirname, 'tsconfig.lib.json'),
+            //         useBabel: true,
+            //         babelCore: "@babel/core", // needed for Babel v7
+            // }},
+
+            // Speed: ~1000ms
+            // { test: /\.tsx?$/, use: [{ loader: 'babel-loader'}, { loader: 'ts-loader',
+            //         options: {
+            //             configFile: path.resolve(__dirname, 'tsconfig.lib.json'),
+            //             compilerOptions: {
+            //                 incremental: true,
+            //             },
+            // }}], exclude: /node_modules/ },
+
+            // Speed: ~750ms
+            // { test: /\.tsx?$/, loader: 'ts-loader', options: { configFile: path.resolve(__dirname, 'tsconfig.lib.json') } },
+
+            // Speed: ~400ms
+            // (exclude: /node_modules/, am 27.2.2020 entfernt da es sonst Probleme mit
+            // dem coalescing-operator aus anderen Modulen gibt)
+            {
+                test: /\.(ts|js)x?$/,
+                loader: 'babel-loader',
+                options: {
+                    cacheDirectory: true,
+                    // And replace .babelrc with babel.config.json...
+                    babelrc: false
+                }
+            },
 
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-            { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
+            // { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
 
             // {
             //       // Include ts, tsx, js, and jsx files.
@@ -114,10 +162,7 @@ module.exports = {
                     },
                     {
                         // Autoprefixer usw.
-                        loader: 'postcss-loader',
-                        options: {
-                            ident: 'postcss',
-                        },
+                        loader: 'postcss-loader'
                     },
                     {
                         // compiles Sass to CSS, using Node Sass by default
@@ -145,6 +190,19 @@ module.exports = {
                 ],
             },
             {
+                test: /\.ejs$/,
+                use: {
+                    loader: 'ejs-compiled-loader',
+                    options: {
+                        beautify: true,
+                        htmlmin: false,
+                        htmlminOptions: {
+                            removeComments: true
+                        }
+                    }
+                }
+            },
+            {
                 test: /\.html$/,
                 use: [
                     {
@@ -169,7 +227,9 @@ module.exports = {
         //     filename: "[name].css"
         // }),
 
-        new CopyWebpackPlugin([{ from: 'src/site/images/static', to: 'images/static' }]),
+        new CopyWebpackPlugin({
+            patterns: [{ from: 'src/site/images/static', to: 'images/static' }]
+        }),
 
         new HtmlWebpackPlugin({
             filename: 'index.html',
@@ -195,18 +255,15 @@ module.exports = {
             chunkFilename: devMode ? 'styles/[id].css' : 'styles/[id].[contenthash].css',
         }),
 
-        new HtmlBeautifyPlugin({
-            config: {
-                html: {
-                    end_with_newline: true,
-                    indent_size: 4,
-                    indent_with_tabs: true,
-                    indent_inner_html: true,
-                    preserve_newlines: false,
-                    unformatted: ['p', 'i', 'b', 'span'],
-                },
-            },
-            replace: [' type="text/javascript"'],
+        // Options: https://www.npmjs.com/package/js-beautify#css--html
+        new BeautifyHtmlWebpackPlugin({
+            end_with_newline: true,
+            indent_size: 4,
+            indent_with_tabs: true,
+            indent_inner_html: true,
+            preserve_newlines: false,
+            wrap_line_length: 100,
+            unformatted: ['i', 'b', 'span']
         }),
 
         new LiveReloadPlugin(),
@@ -215,16 +272,17 @@ module.exports = {
     optimization: {
         splitChunks: {
             chunks: 'async',
-            minSize: 30000,
+            minSize: 20000,
+            minRemainingSize: 0,
             minChunks: 1,
-            maxAsyncRequests: 5,
-            maxInitialRequests: 3,
-            automaticNameDelimiter: '~',
-            name: true,
+            maxAsyncRequests: 30,
+            maxInitialRequests: 30,
+            enforceSizeThreshold: 50000,
             cacheGroups: {
-                vendors: {
+                defaultVendors: {
                     test: /[\\/]node_modules[\\/]/,
                     priority: -10,
+                    reuseExistingChunk: true,
                 },
                 default: {
                     minChunks: 2,
