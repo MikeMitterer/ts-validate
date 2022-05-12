@@ -300,6 +300,34 @@ describe('validate.spec.ts', (): void => {
         })
     })
 
+    test('Latitude & Longitude', (): void => {
+        const valid: { latitude: number, longitude: number }[] = [
+            { latitude: 38.8951, longitude: -77.0364 },
+        ]
+        // tslint:disable-next-line:no-any
+        const invalid: { latitude: any, longitude: any }[] = [
+            { latitude: 100, longitude: 200},
+        ]
+
+        valid.forEach((value: { latitude: number, longitude: number}): void => {
+            const { latitude, longitude } = validate.isLocation(value.latitude, value.longitude)
+
+            expect(latitude).toBe(value.latitude)
+            expect(longitude).toBe(value.longitude)
+        })
+
+        invalid.forEach((value: { latitude: number, longitude: number}): void => {
+            expect((): { } => validate.isLocation(value.latitude, value.longitude))
+                .toThrow(new ArgumentError(`'${value.latitude}'/'${value.longitude}' is no a valid Location`))
+        })
+
+        // - String sollte auch invalid sein!
+        
+        // @ts-ignore
+        expect((): { } => validate.isLocation("38.8951", -77.0364))
+            .toThrow(new ArgumentError(`Invalid type - '38.8951' is not a number!`))
+    })
+
     const returnsStringOrUndefined: (input: string | undefined) => string | undefined = (
         input: string | undefined
     ): string | undefined => input

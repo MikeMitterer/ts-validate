@@ -70,3 +70,6 @@ export const DEFAULT_INCLUSIVE_BETWEEN_MESSAGE: (value: number, start: number, e
 
 export const DEFAULT_MATCHES_JWT: (token: string) => ErrorMessage = (token): ErrorMessage => (): string =>
     `'${token}' is not a valid WebToken!`;
+
+export const DEFAULT_MATCHES_LOCATION: (latitude: number, longitude: number) => ErrorMessage = (latitude: number, longitude: number): ErrorMessage => (): string =>
+    `'${latitude}'/'${longitude}' is no a valid Location`;

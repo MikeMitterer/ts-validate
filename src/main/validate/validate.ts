@@ -10,15 +10,15 @@ import {
     DEFAULT_MATCHES_EMAIL,
     DEFAULT_MATCHES_HEX,
     DEFAULT_MATCHES_HOSTNAME,
-    DEFAULT_MATCHES_JWT,
+    DEFAULT_MATCHES_JWT, DEFAULT_MATCHES_LOCATION,
     DEFAULT_MATCHES_PASSWORD,
     DEFAULT_MATCHES_PATTERN,
     DEFAULT_MATCHES_URL,
     DEFAULT_MATCHES_UUID,
     DEFAULT_NOT_BLANK_MESSAGE,
     DEFAULT_NOT_EMPTY_MESSAGE,
-    DEFAULT_PORT_MESSAGE,
-} from './messages';
+    DEFAULT_PORT_MESSAGE
+} from './messages'
 import pattern from './pattern';
 
 export type Message = () => string;
@@ -290,4 +290,25 @@ export function inclusiveBetween(value: number, start: number, end: number, mess
 // prettier-ignore
 export function isWebToken(token: string, message: Message = DEFAULT_MATCHES_JWT(token)): string | never {
     return matchesPattern(token, pattern.JWT, message);
+}
+
+// prettier-ignore
+export function isLocation(latitude: number, longitude: number,
+    message: Message = DEFAULT_MATCHES_LOCATION(latitude, longitude)): { latitude: number, longitude: number} {
+
+    // noinspection SuspiciousTypeOfGuard
+    if (typeof latitude !== 'number') {
+        throw new ArgumentError(DEFAULT_INVALID_TYPE_MESSAGE(latitude, 'number')());
+    }
+
+    // noinspection SuspiciousTypeOfGuard
+    if (typeof longitude !== 'number') {
+        throw new ArgumentError(DEFAULT_INVALID_TYPE_MESSAGE(longitude, 'number')());
+    }
+
+    if(latitude < -90 || latitude > 90 || longitude < -180 || longitude > 180) {
+        throw new ArgumentError(message());
+    }
+
+    return { latitude, longitude }
 }
