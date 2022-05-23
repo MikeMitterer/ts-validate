@@ -6,11 +6,12 @@ import {
     DEFAULT_INVALID_TYPE_MESSAGE,
     DEFAULT_IS_NULL_MESSAGE,
     DEFAULT_IS_TRUE_MESSAGE,
+    DEFAULT_IS_LOCATION_MESSAGE,
     DEFAULT_MATCHES_ALPHANUMERIC,
     DEFAULT_MATCHES_EMAIL,
     DEFAULT_MATCHES_HEX,
     DEFAULT_MATCHES_HOSTNAME,
-    DEFAULT_MATCHES_JWT, DEFAULT_MATCHES_LOCATION,
+    DEFAULT_MATCHES_JWT,
     DEFAULT_MATCHES_PASSWORD,
     DEFAULT_MATCHES_PATTERN,
     DEFAULT_MATCHES_URL,
@@ -294,7 +295,7 @@ export function isWebToken(token: string, message: Message = DEFAULT_MATCHES_JWT
 
 // prettier-ignore
 export function isLocation(latitude: number, longitude: number,
-    message: Message = DEFAULT_MATCHES_LOCATION(latitude, longitude)): { latitude: number, longitude: number} {
+    message: Message = DEFAULT_IS_LOCATION_MESSAGE(latitude, longitude)): { latitude: number, longitude: number} {
 
     // noinspection SuspiciousTypeOfGuard
     if (typeof latitude !== 'number') {
