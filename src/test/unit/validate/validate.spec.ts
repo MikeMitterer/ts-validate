@@ -318,7 +318,7 @@ describe('validate.spec.ts', (): void => {
 
         invalid.forEach((value: { latitude: number, longitude: number}): void => {
             expect((): { } => validate.isLocation(value.latitude, value.longitude))
-                .toThrow(new ArgumentError(`'${value.latitude}'/'${value.longitude}' is no a valid Location`))
+                .toThrow(new ArgumentError(`'${value.latitude}'/'${value.longitude}' is not a valid Location`))
         })
 
         // - String sollte auch invalid sein!
