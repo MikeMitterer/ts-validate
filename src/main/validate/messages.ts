@@ -72,4 +72,4 @@ export const DEFAULT_MATCHES_JWT: (token: string) => ErrorMessage = (token): Err
     `'${token}' is not a valid WebToken!`;
 
 export const DEFAULT_MATCHES_LOCATION: (latitude: number, longitude: number) => ErrorMessage = (latitude: number, longitude: number): ErrorMessage => (): string =>
-    `'${latitude}'/'${longitude}' is no a valid Location`;
+    `'${latitude}'/'${longitude}' is not a valid Location`;
