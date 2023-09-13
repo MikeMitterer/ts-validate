@@ -2,7 +2,7 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 8
+  version: 6
   cacheKey: 10
 
 "@babel/cli@npm:^7.14.5":
@@ -1921,74 +1921,74 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@mmit/validate@workspace:."
   dependencies:
-    "@babel/cli": "npm:^7.14.5"
-    "@babel/core": "npm:^7.14.6"
-    "@babel/node": "npm:^7.14.7"
-    "@babel/plugin-proposal-class-properties": "npm:^7.14.5"
-    "@babel/plugin-proposal-object-rest-spread": "npm:^7.14.7"
-    "@babel/plugin-transform-runtime": "npm:^7.14.5"
-    "@babel/preset-env": "npm:^7.14.7"
-    "@babel/preset-typescript": "npm:^7.14.5"
-    "@babel/runtime": "npm:^7.14.6"
-    "@mmit/logging": "npm:^0.1.8"
-    "@rollup/plugin-commonjs": "npm:^19.0.0"
-    "@rollup/plugin-image": "npm:^2.0.6"
-    "@rollup/plugin-node-resolve": "npm:^13.0.0"
-    "@rollup/plugin-replace": "npm:^2.4.2"
-    "@rollup/plugin-typescript": "npm:^8.2.1"
-    "@types/core-js": "npm:^2.5.4"
-    "@types/jest": "npm:^26.0.23"
-    "@types/node": "npm:^16.0.0"
-    "@types/shelljs": "npm:^0.8.8"
-    "@types/ws": "npm:^7.4.6"
-    autoprefixer: "npm:^10.2.6"
-    awesome-typescript-loader: "npm:^5.2.1"
-    babel-loader: "npm:^8.2.2"
-    babel-preset-modern-browsers: "npm:^15.0.2"
-    barrelsby: "npm:^2.2.0"
-    beautify-html-webpack-plugin: "npm:^1.0.3"
-    clean-webpack-plugin: "npm:^4.0.0-alpha.0"
-    copy-webpack-plugin: "npm:^9.0.1"
-    css-loader: "npm:^5.2.6"
-    date-fns: "npm:^2.22.1"
-    ejs-compiled-loader: "npm:^3.1.0"
-    file-loader: "npm:^6.2.0"
-    html-beautify-webpack-plugin: "npm:^1.0.5"
-    html-loader: "npm:^2.1.2"
-    html-webpack-plugin: "npm:^5.3.2"
-    html-webpack-string-replace-plugin: "npm:^1.1.0"
-    jest: "npm:^27.0.6"
-    jest-cli: "npm:^27.0.6"
-    jest-extended: "npm:^0.11.5"
-    mini-css-extract-plugin: "npm:^2.1.0"
-    moment: "npm:^2.29.1"
-    onchange: "npm:^7.1.0"
-    postcss: "npm:^8.3.5"
-    postcss-loader: "npm:^6.1.1"
-    rollup: "npm:^2.52.7"
-    rollup-plugin-scss: "npm:3"
-    sass: "npm:^1.35.1"
-    sass-loader: "npm:^12.1.0"
-    semver: "npm:^7.3.5"
-    shelljs: "npm:^0.8.4"
-    source-map-loader: "npm:^3.0.0"
-    style-loader: "npm:^3.0.0"
-    ts-jest: "npm:^27.0.3"
-    ts-loader: "npm:^9.2.3"
-    ts-node: "npm:^10.0.0"
-    tslib: "npm:^2.3.0"
-    tslint: "npm:^6.1.3"
-    tslint-consistent-codestyle: "npm:^1.16.0"
-    tslint-loader: "npm:^3.5.4"
-    tslint-override: "npm:^1.0.1"
-    typedoc: "npm:^0.21.2"
-    typescript: "npm:^4.3.5"
-    url-loader: "npm:^4.1.1"
-    webpack: "npm:^5.42.0"
-    webpack-cli: "npm:^4.7.2"
-    webpack-dev-server: "npm:^3.11.2"
-    webpack-livereload-plugin: "npm:^3.0.1"
-    webpack-node-externals: "npm:^3.0.0"
+    "@babel/cli": ^7.14.5
+    "@babel/core": ^7.14.6
+    "@babel/node": ^7.14.7
+    "@babel/plugin-proposal-class-properties": ^7.14.5
+    "@babel/plugin-proposal-object-rest-spread": ^7.14.7
+    "@babel/plugin-transform-runtime": ^7.14.5
+    "@babel/preset-env": ^7.14.7
+    "@babel/preset-typescript": ^7.14.5
+    "@babel/runtime": ^7.14.6
+    "@mmit/logging": ^0.1.8
+    "@rollup/plugin-commonjs": ^19.0.0
+    "@rollup/plugin-image": ^2.0.6
+    "@rollup/plugin-node-resolve": ^13.0.0
+    "@rollup/plugin-replace": ^2.4.2
+    "@rollup/plugin-typescript": ^8.2.1
+    "@types/core-js": ^2.5.4
+    "@types/jest": ^26.0.23
+    "@types/node": ^16.0.0
+    "@types/shelljs": ^0.8.8
+    "@types/ws": ^7.4.6
+    autoprefixer: ^10.2.6
+    awesome-typescript-loader: ^5.2.1
+    babel-loader: ^8.2.2
+    babel-preset-modern-browsers: ^15.0.2
+    barrelsby: ^2.2.0
+    beautify-html-webpack-plugin: ^1.0.3
+    clean-webpack-plugin: ^4.0.0-alpha.0
+    copy-webpack-plugin: ^9.0.1
+    css-loader: ^5.2.6
+    date-fns: ^2.22.1
+    ejs-compiled-loader: ^3.1.0
+    file-loader: ^6.2.0
+    html-beautify-webpack-plugin: ^1.0.5
+    html-loader: ^2.1.2
+    html-webpack-plugin: ^5.3.2
+    html-webpack-string-replace-plugin: ^1.1.0
+    jest: ^27.0.6
+    jest-cli: ^27.0.6
+    jest-extended: ^0.11.5
+    mini-css-extract-plugin: ^2.1.0
+    moment: ^2.29.1
+    onchange: ^7.1.0
+    postcss: ^8.3.5
+    postcss-loader: ^6.1.1
+    rollup: ^2.52.7
+    rollup-plugin-scss: 3
+    sass: ^1.35.1
+    sass-loader: ^12.1.0
+    semver: ^7.3.5
+    shelljs: ^0.8.4
+    source-map-loader: ^3.0.0
+    style-loader: ^3.0.0
+    ts-jest: ^27.0.3
+    ts-loader: ^9.2.3
+    ts-node: ^10.0.0
+    tslib: ^2.3.0
+    tslint: ^6.1.3
+    tslint-consistent-codestyle: ^1.16.0
+    tslint-loader: ^3.5.4
+    tslint-override: ^1.0.1
+    typedoc: ^0.21.2
+    typescript: ^4.3.5
+    url-loader: ^4.1.1
+    webpack: ^5.42.0
+    webpack-cli: ^4.7.2
+    webpack-dev-server: ^3.11.2
+    webpack-livereload-plugin: ^3.0.1
+    webpack-node-externals: ^3.0.0
   languageName: unknown
   linkType: soft
 
@@ -5565,9 +5565,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fsevents@patch:fsevents@npm%3A^1.2.7#optional!builtin<compat/fsevents>":
+"fsevents@patch:fsevents@npm%3A^1.2.7#~builtin<compat/fsevents>":
   version: 1.2.7
-  resolution: "fsevents@patch:fsevents@npm%3A1.2.7#optional!builtin<compat/fsevents>::version=1.2.7&hash=d11327"
+  resolution: "fsevents@patch:fsevents@npm%3A1.2.7#~builtin<compat/fsevents>::version=1.2.7&hash=d11327"
   dependencies:
     nan: "npm:^2.9.2"
     node-pre-gyp: "npm:^0.10.0"
@@ -5575,9 +5575,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fsevents@patch:fsevents@npm%3A^2.3.2#optional!builtin<compat/fsevents>, fsevents@patch:fsevents@npm%3A~2.3.2#optional!builtin<compat/fsevents>":
+"fsevents@patch:fsevents@npm%3A^2.3.2#~builtin<compat/fsevents>, fsevents@patch:fsevents@npm%3A~2.3.2#~builtin<compat/fsevents>":
   version: 2.3.2
-  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#optional!builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"
+  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"
   dependencies:
     node-gyp: "npm:latest"
   conditions: os=darwin
@@ -9960,22 +9960,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@patch:resolve@npm%3A^1.1.6#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.3.2#optional!builtin<compat/resolve>":
+"resolve@patch:resolve@npm%3A^1.1.6#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.3.2#~builtin<compat/resolve>":
   version: 1.10.0
-  resolution: "resolve@patch:resolve@npm%3A1.10.0#optional!builtin<compat/resolve>::version=1.10.0&hash=c3c19d"
+  resolution: "resolve@patch:resolve@npm%3A1.10.0#~builtin<compat/resolve>::version=1.10.0&hash=c3c19d"
   dependencies:
     path-parse: "npm:^1.0.6"
-  checksum: 16f0378f16cb592e9b1d0c91f8f1a218561f34e06dd81dd710b3eb72c5406ad829c540c0909879ec7d1bc311d14c9568d410a0fc2950218700996dc101377d8d
+  checksum: 8/15a10fd1be02a58840c03aa8dcc704656e5337efc17ac411cdbf5a96933a3697142952b42ce5bff9d14c0675f73f2c0dd8de91765265d88e8e44e7b06c9f9910
   languageName: node
   linkType: hard
 
-"resolve@patch:resolve@npm%3A^1.14.2#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.17.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.19.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.20.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.9.0#optional!builtin<compat/resolve>":
+"resolve@patch:resolve@npm%3A^1.14.2#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.17.0#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.19.0#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.20.0#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.9.0#~builtin<compat/resolve>":
   version: 1.20.0
-  resolution: "resolve@patch:resolve@npm%3A1.20.0#optional!builtin<compat/resolve>::version=1.20.0&hash=c3c19d"
+  resolution: "resolve@patch:resolve@npm%3A1.20.0#~builtin<compat/resolve>::version=1.20.0&hash=c3c19d"
   dependencies:
     is-core-module: "npm:^2.2.0"
     path-parse: "npm:^1.0.6"
-  checksum: 197ca6b762f32ece2eebb55158532512b26bdb10f9e34f272347e92fb55eec691939daf974e850e9cc9cf3c692334bb9339e0f5f1065b48f3daba227fd60e06c
+  checksum: 8/a0dd7d16a8e47af23afa9386df2dff10e3e0debb2c7299a42e581d9d9b04d7ad5d2c53f24f1e043f7b3c250cbdc71150063e53d0b6559683d37f790b7c8c3cd5
   languageName: node
   linkType: hard
 
@@ -11221,13 +11221,14 @@ __metadata:
   linkType: hard
 
 "tough-cookie@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "tough-cookie@npm:4.0.0"
+  version: 4.1.3
+  resolution: "tough-cookie@npm:4.1.3"
   dependencies:
-    psl: "npm:^1.1.33"
-    punycode: "npm:^2.1.1"
-    universalify: "npm:^0.1.2"
-  checksum: 1c9764cbe14f14b6d1a1c1985ca38e04cccdbb8436c00837b27dd7106234a94057849606590a7301bd97faf3b309208b25e2a4f10091d4340526dc5e4ffa1b91
+    psl: ^1.1.33
+    punycode: ^2.1.1
+    universalify: ^0.2.0
+    url-parse: ^1.5.3
+  checksum: 8/c9226afff36492a52118432611af083d1d8493a53ff41ec4ea48e5b583aec744b989e4280bcf476c910ec1525a89a4a0f1cae81c08b18fb2ec3a9b3a72b91dcc
   languageName: node
   linkType: hard
 
@@ -11512,13 +11513,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^4.3.5#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@^4.3.5#~builtin<compat/typescript>":
   version: 4.3.5
-  resolution: "typescript@patch:typescript@npm%3A4.3.5#optional!builtin<compat/typescript>::version=4.3.5&hash=dba6d9"
+  resolution: "typescript@patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=dba6d9"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 100e3f4aff0090089f657ee730f059e0fc4de7637ef6574b2fe8632218f1c5882dd5fbfd0cbde3c7fc4fa501955bc93841f540bb6cbb678f655a0f7880cb7881
+  checksum: 8/365df18cf979c971ef9543b2acaa8694377a803f98e1804c41d0ede0b09d7046cb0cd98f2eaf3884b0fe923c01a60af1f653841bd8805c9715d5479c09a4ebe4
   languageName: node
   linkType: hard
 
@@ -11618,10 +11619,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"universalify@npm:^0.1.2":
-  version: 0.1.2
-  resolution: "universalify@npm:0.1.2"
-  checksum: 40cdc60f6e61070fe658ca36016a8f4ec216b29bf04a55dce14e3710cc84c7448538ef4dad3728d0bfe29975ccd7bfb5f414c45e7b78883567fb31b246f02dff
+"universalify@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "universalify@npm:0.2.0"
+  checksum: 8/e86134cb12919d177c2353196a4cc09981524ee87abf621f7bc8d249dbbbebaec5e7d1314b96061497981350df786e4c5128dbf442eba104d6e765bc260678b5
   languageName: node
   linkType: hard
 
@@ -11706,6 +11707,16 @@ __metadata:
     querystringify: "npm:^2.1.1"
     requires-port: "npm:^1.0.0"
   checksum: 564f7a8e84eb3ad40f98e784e5cc39b613c7974ad4f379e02cac1d1f9d00f2dcf060aa77ccf896c0d56dae137dd0b31948b4d54fe4282d5448713062756c0fb7
+  languageName: node
+  linkType: hard
+
+"url-parse@npm:^1.5.3":
+  version: 1.5.10
+  resolution: "url-parse@npm:1.5.10"
+  dependencies:
+    querystringify: ^2.1.1
+    requires-port: ^1.0.0
+  checksum: 8/fbdba6b1d83336aca2216bbdc38ba658d9cfb8fc7f665eb8b17852de638ff7d1a162c198a8e4ed66001ddbf6c9888d41e4798912c62b4fd777a31657989f7bdf
   languageName: node
   linkType: hard
 
