@@ -75,7 +75,7 @@ export function notNull<T>(
  * Validate that the specified argument is neither null
  * nor is empty.
  *
- * @param expression The expression the should evaluate against not being empty
+ * @param expression The expression should evaluate against not being empty
  * @param message The exception message if invalid
  *
  * @return evaluated expression
@@ -89,11 +89,12 @@ export function notEmpty<T = object | string>(
     notNull(expression);
 
     // TS complains with: Property 'hasOwnProperty' does not exist on type 'T'....
-    // @ts-ignore
-    // tslint:disable-next-line:no-any
-    if (expression.hasOwnProperty('length') && (expression as any).length === 0) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (expression != null && typeof expression === 'object' && "hasOwnProperty" in expression && expression.hasOwnProperty('length') && (expression as any).length === 0) {
         throw new ArgumentError(message());
-    } else if (typeof expression === 'object' && Object.keys(expression).length === 0) {
+    } else if (typeof expression === 'object' && Object.keys(expression as object).length === 0) {
+        throw new ArgumentError(message());
+    } else if (typeof expression === 'string' && expression.length === 0) {
         throw new ArgumentError(message());
     }
 

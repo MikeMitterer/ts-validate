@@ -1,0 +1,11 @@
+$branding-color: #ffbb00;
+@import "~@mmit/styles/css/mobiad";
+@import "~@mmit/muni/css/muni.css";
+
+@import "ui";
+
+body {
+    background-color: #dddddd;
+    background-image: url('../images/static/background.png');
+}
+

@@ -1,9 +1,9 @@
 /* tslint:disable:max-line-length */
 // import { loggerFactory } from '../../main/config/ConfigLog4j';
 import 'jest-extended'
-import { ArgumentError } from '../../../main'
-import * as error from '../../../main/validate/messages'
-import * as validate from '../../../main/validate/validate'
+import { ArgumentError } from '../../../src/main/exception';
+import * as error from '../../../src/main/validate/messages'
+import * as validate from '../../../src/main/validate/validate'
 
 type MyName = string | undefined;
 
@@ -58,6 +58,9 @@ describe('validate.spec.ts', (): void => {
         expect((): {} => validate.notEmpty({}, (): string => 'Object must not be empty!')).toThrow(
             'Object must not be empty!'
         )
+        expect(validate.notEmpty(1)).toBe(1)
+        expect(validate.notEmpty(0)).toBe(0)
+
     })
 
     test('Change return value from string | undefined to string', (): void => {
