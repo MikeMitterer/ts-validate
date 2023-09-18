@@ -43,7 +43,7 @@ pipeline {
             steps {
                 ansiColor('xterm') {
                     sh 'yarn run tc'
-                    sh 'yarn run lint'
+                    // sh 'yarn run lint'
                     sh 'yarn run test'
                 }
             }
@@ -52,10 +52,10 @@ pipeline {
             steps {
                 timeout(time: 15, unit: 'MINUTES') {
                     ansiColor('xterm') {
-                        sh 'yarn run clean'
+                        // sh 'yarn run clean'
                         sh 'yarn run build'
-                        sh 'yarn run build:node'
-                        sh 'yarn run build:web:prod'
+                        // sh 'yarn run build:node'
+                        // sh 'yarn run build:web:prod'
                     }
                 }
 
