@@ -21,10 +21,8 @@
 # FILES_TO_COPY["static/config.lenovo.js"]="config.js"
 # FILES_TO_COPY["static/config.lenovo.js"]=""
 
-FILES_TO_COPY["webpack.web.cjs"]=""
-
 # Hängt von dem jeweiligen Projekt ab ob puppeteer benötigt wird oder nicht
-# FILES_TO_COPY["jest-puppeteer.config.cjs"]=""
+FILES_TO_COPY["jest-puppeteer.config.cjs"]="false"
 
 # Scripts ---------------------------------------------------------------------
 
