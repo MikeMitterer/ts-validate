@@ -11,7 +11,7 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import scss from 'rollup-plugin-scss'
 import image from '@rollup/plugin-image';
 
-import pkg from './package.json' // Convert CommonJS modules to ES6
+import pkg from './package.json' assert { type: 'json' };
 
 const name = "validate"
 
@@ -37,15 +37,13 @@ const lib = {
             preventAssignment: true,
             __buildVersion__: pkg.version
         }),
-        nodeResolve(),
+        // nodeResolve(),
         typescript({
-            typescript: require('typescript'),
-            // module: 'esnext',
-            //
             // declaration: true,
             // declarationDir: './lib/types/',
             rootDir: './src/main',
-
+            outDir: './lib',
+            module: 'esnext',
             tsconfig: "tsconfig.lib.json",
         }),
     ]
@@ -75,7 +73,6 @@ const dist = {
         }),
         nodeResolve(),
         typescript({
-            typescript: require('typescript'),
             "tsBuildInfoFile": "./dist/buildcache",
 
             // module: 'esnext',
