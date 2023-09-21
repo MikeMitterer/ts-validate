@@ -15,6 +15,10 @@
 
 # Files die umbenannt werden müssen -------------------------------------------
 
+# Files die gelöscht werden ---------------------------------------------------
+
+FILES_TO_REMOVE+=("jest-puppeteer.config.cjs")
+
 # Files die kopiert werden -----------------------------------------------------
 
 # Der "Key" ist das Source-File und der "Value" ist das Remote-File
